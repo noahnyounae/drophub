@@ -1,0 +1,22 @@
+{
+  "name": "drophub",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test \"test/*.test.js\""
+  },
+  "dependencies": {
+    "express": "^4.22.3"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noahnyounae/drophub.git"
+  },
+  "homepage": "https://github.com/noahnyounae/drophub"
+}

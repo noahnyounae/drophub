@@ -1,0 +1,24 @@
+name: drophub
+
+services:
+  app:
+    build: .
+    image: drophub:latest
+    container_name: drophub-app
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./data:/data
+    # Reachable locally only; public access goes through the tunnel.
+    ports:
+      - "127.0.0.1:3000:3000"
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: drophub-tunnel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    depends_on:
+      - app
