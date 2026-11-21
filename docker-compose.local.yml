@@ -1,0 +1,5 @@
+# Publishes the app on the host. Loaded only when listed in COMPOSE_FILE (see .env.example).
+services:
+  app:
+    ports:
+      - "${LOCAL_HOST:-127.0.0.1}:${LOCAL_PORT:-3000}:3000"

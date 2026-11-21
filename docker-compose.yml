@@ -9,9 +9,8 @@ services:
     env_file: .env
     volumes:
       - ./data:/data
-    # Reachable locally only; public access goes through the tunnel.
-    ports:
-      - "127.0.0.1:3000:3000"
+    # No port is published here: the app is reachable by the tunnel only.
+    # Local access is added by docker-compose.local.yml (see COMPOSE_FILE in .env).
 
   cloudflared:
     image: cloudflare/cloudflared:latest

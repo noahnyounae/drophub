@@ -26,6 +26,17 @@ docker compose up -d --build
 ```
 Local admin: http://127.0.0.1:3000/admin
 
+### Local port (on/off, custom port)
+Publishing the app on the host is controlled from `.env`:
+
+| Goal | `.env` |
+| --- | --- |
+| Local port **on** (default in `.env.example`) | `COMPOSE_FILE=docker-compose.yml:docker-compose.local.yml` |
+| Local port **off** (tunnel only) | delete or comment the `COMPOSE_FILE` line |
+| Custom port / address | `LOCAL_PORT=8080`, `LOCAL_HOST=127.0.0.1` (or `0.0.0.0`) |
+
+Restart after a change: `docker compose up -d`. With the local port off and `ADMIN_VIA_TUNNEL=false`, the admin interface is not reachable at all.
+
 ### Cloudflare tunnel
 1. Cloudflare Zero Trust → Networks → Tunnels → *Create a tunnel* (Cloudflared); copy the **token** into `TUNNEL_TOKEN`.
 2. Add a *Public hostname* (e.g. `drop.example.com`) pointing to the **HTTP** service `http://app:3000`.
